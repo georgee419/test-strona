@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grzegorz Mirecki - Jiu-Jitsu World Seminars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #e8eaf6;
+            --accent: #ff5722;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #3949ab);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1544367163-9d2b481c72ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background: #e64a19;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* About Instructor */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Schedule */
+        .schedule {
+            background-color: var(--secondary);
+        }
+
+        .schedule-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .schedule-date {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-location {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Gallery */
+        .gallery-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+        }
+
+        .gallery-slide {
+            min-width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--secondary);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Registration Form */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* World Map */
+        .world-map {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .world-map img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            margin: 1.5rem 0;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">GM <span>Jiu-Jitsu</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">O mnie</a></li>
+                    <li><a href="#schedule">Terminarz</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                    <li><a href="#register">Zapisy</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content animate">
+            <h1>World Tour 2025<br>Grzegorz Mirecki</h1>
+            <p>Czarny pas BJJ zaprasza na międzynarodowe seminaria techniki, strategii i filozofii jiu-jitsu.</p>
+            <a href="#register" class="btn">Zapisz się teraz – 1000 zł / seminarium</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title animate">O Instruktorze</h2>
+            <div class="about-grid">
+                <div class="about-img animate">
+                    <img src="https://via.placeholder.com/600x400?text=Grzegorz+Mirecki+BJJ" alt="Grzegorz Mirecki - czarny pas jiu-jitsu">
+                </div>
+                <div class="about-text animate">
+                    <h3>Grzegorz Mirecki – Czarny Pas BJJ</h3>
+                    <p>Posiadacz czarnego pasa w brazylijskim jiu-jitsu z ponad 15-letnim doświadczeniem trenera i zawodnika. Uczestnik licznych turniejów krajowych i międzynarodowych. Trener certyfikowany przez Federację BJJ Polska oraz IBJJF.</p>
+                    <p>Specjalizuje się w technikach ground game, przejściach pozycji oraz strategii walki sportowej i self-defense. Jego seminaria są cenione za praktyczność, indywidualne podejście i atmosferę skupienia oraz szacunku.</p>
+                    <p>„Jiu-jitsu to nie tylko walka – to droga rozwoju osobistego.” – Grzegorz Mirecki</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section schedule">
+        <div class="container">
+            <h2 class="section-title animate">Harmonogram Światowego Tour 2025</h2>
+            <div class="schedule-list">
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 12–13 kwietnia 2025</div>
+                    <div class="schedule-location">📍 Warszawa, Polska</div>
+                    <p>Seminarium otwarcie sezonu – podstawy gry naziemnej i przejścia pozycji.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 10–11 maja 2025</div>
+                    <div class="schedule-location">📍 Berlin, Niemcy</div>
+                    <p>Advanced Guard Passing & Submissions – dla średniozaawansowanych i zaawansowanych.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 7–8 czerwca 2025</div>
+                    <div class="schedule-location">📍 Barcelona, Hiszpania</div>
+                    <p>Summer Intensive – 2 dni pełne technik, sparingów i analizy walk.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 13–14 września 2025</div>
+                    <div class="schedule-location">📍 Nowy Jork, USA</div>
+                    <p>Pierwsze seminarium w USA! Temat: Pressure Game & Leg Lock Defense.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 18–19 października 2025</div>
+                    <div class="schedule-location">📍 Tokio, Japonia</div>
+                    <p>Honoring the Roots – powrót do korzeni w kraju judo i jujutsu.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+                <div class="schedule-item animate">
+                    <div class="schedule-date">📅 15–16 listopada 2025</div>
+                    <div class="schedule-location">📍 São Paulo, Brazylia</div>
+                    <p>Finał światowego tour w sercu BJJ! Open Mat + Q&A z mistrzem.</p>
+                    <span class="price-tag">1000 zł</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Map -->
+    <section class="section">
+        <div class="container world-map">
+            <h2 class="section-title animate">Mapa Światowego Tour</h2>
+            <img src="https://via.placeholder.com/1200x600?text=ŚWIATOWA+MAPA+Z+LOKALIZACJAMI+SEMINARIÓW" alt="Mapa świata z lokalizacjami seminariów Grzegorza Mireckiego">
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title animate">Galeria</h2>
+            <div class="gallery-slider">
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=Seminarium+Warszawa');"></div>
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=Berlin+BJJ');"></div>
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=Barcelona+Training');"></div>
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=NYC+Workshop');"></div>
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=Tokyo+Dojo');"></div>
+                <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/300x300?text=São+Paulo+Final');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate">Opinie Uczestników</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial animate">
+                    <p>„Najlepsze seminarium jakie miałem okazję uczęszczać. GM przekazał nie tylko techniki, ale i mentalność.”</p>
+                    <div class="testimonial-author">— Adam K., Warszawa</div>
+                </div>
+                <div class="testimonial animate">
+                    <p>„Poziom prowadzenia, indywidualne podejście i atmosfera — po prostu mistrzowskie. Polecam każdemu!”</p>
+                    <div class="testimonial-author">— Lena M., Berlin</div>
+                </div>
+                <div class="testimonial animate">
+                    <p>„W Barcelonie nauczyłem się więcej w 2 dni niż w 6 miesięcy treningu. Warto każdą złotówkę!”</p>
+                    <div class="testimonial-author">— Carlos R., Madryt</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="register" class="section" style="background: linear-gradient(135deg, #3949ab, #1a237e);">
+        <div class="container">
+            <h2 class="section-title animate" style="color: white;">Zapisz się na Seminarium</h2>
+            <div class="form-container">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">Imię i Nazwisko *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="seminar">Wybierz Seminarium *</label>
+                        <select id="seminar" required>
+                            <option value="">-- Wybierz lokalizację i termin --</option>
+                            <option value="warsaw">Warszawa, 12–13 kwietnia 2025</option>
+                            <option value="berlin">Berlin, 10–11 maja 2025</option>
+                            <option value="barcelona">Barcelona, 7–8 czerwca 2025</option>
+                            <option value="nyc">Nowy Jork, 13–14 września 2025</option>
+                            <option value="tokyo">Tokio, 18–19 października 2025</option>
+                            <option value="saopaulo">São Paulo, 15–16 listopada 2025</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="belt">Twój pas (poziom zaawansowania)</label>
+                        <select id="belt">
+                            <option value="white">Biały</option>
+                            <option value="blue">Niebieski</option>
+                            <option value="purple">Fioletowy</option>
+                            <option value="brown">Brązowy</option>
+                            <option value="black">Czarny</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Dodatkowe uwagi</label>
+                        <textarea id="message" placeholder="Chcesz coś dodać?"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Zarejestruj się (1000 zł)</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title animate">Kontakt</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Masz pytania? Napisz lub zadzwoń!
+            </p>
+            <div style="text-align: center;">
+                <p><i class="fas fa-envelope"></i> kontakt@gm-jiujitsu.com</p>
+                <p><i class="fas fa-phone"></i> +48 123 456 789</p>
+                <p><i class="fas fa-map-marker-alt"></i> Siedziba: Warszawa, Polska</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 1rem;">GM <span>Jiu-Jitsu</span></div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">O mnie</a>
+                <a href="#schedule">Terminarz</a>
+                <a href="#gallery">Galeria</a>
+                <a href="#register">Zapisy</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2025 Grzegorz Mirecki Jiu-Jitsu World Seminars. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Dziękujemy za rejestrację! Skontaktujemy się z Tobą w ciągu 24h.');
+            this.reset();
+        });
+
+        // Animate on scroll (simple version)
+        const animateElements = document.querySelectorAll('.animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
